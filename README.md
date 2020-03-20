@@ -7,7 +7,7 @@ chmod +x Client.py
 chmod +x Server.py
 ```
 
-To run each file, you need to get your own ip address. I have a function [here](helpers.py) that tells you what your IP is and then fill in info as appropriate.
+To run each file, you need to determine your own ip address. I have a function [here](helpers.py) that tells you what your IP is and then fill in info as appropriate. Or run `whatsmyip.py` in this repo :)
 
 Edit [config.py](config.py) and add your own info. I created this so I wouldn't have to type in the params everytime.
 
