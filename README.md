@@ -20,6 +20,8 @@ port = 6000
 debug = False
 ```
 
+As pointed out by Broday (I forgot to post actually): you must change the path of the shebang at the top of client / server to match your install. This is the "generic" path that should work on most systems: `#!/usr/bin/env python3`. Mine however does not. Hence, the hardcoded path.
+
 I was using the `debug` value to add debug info to my classes. By putting `import config` you now have variables = to the values in the file. So you could do things like: 
 
 ```python
