@@ -198,7 +198,7 @@ class MongoHelper(object):
         if len(result_list) > 0:
             response = {"success": True,"count":len(result_list),"data":result_list,}
         else:
-            response = {"success": False,"collection":collection,"message":f"No results with key: {key} and val: {value} "}
+            response = {"success": False,"collection":self.collection,"message":f"No results with params {params} "}
 
         return response 
 
