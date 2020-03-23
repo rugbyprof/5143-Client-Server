@@ -1,4 +1,4 @@
-#!/usr/local/Cellar/python@3.8/3.8.1/bin/python3
+#!/usr/bin/env python3
 """ Server.py
 Look at above shebang and make sure your python is at same location.
 You can test by typing `which python3` at your console.

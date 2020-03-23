@@ -1,4 +1,4 @@
-#!/usr/local/Cellar/python@3.8/3.8.1/bin/python3
+#!/usr/bin/env python3
 import config
 import sys
 import selectors

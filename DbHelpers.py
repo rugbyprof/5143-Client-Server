@@ -1,4 +1,4 @@
-#!/usr/local/Cellar/python@3.8/3.8.1/bin/python3
+#!/usr/bin/env python3
 """Api.py
 
 """
@@ -26,6 +26,14 @@ class Api(object):
     def processRequest(self):
         """ This method takes the "request" dictionary (a constructor parameter) and determines
             what to do with the data inside. Here are some request examples:
+
+            0) test - requires the following: 
+
+            Example Dictionary:
+            request = {
+                "action": "test"
+            }
+
             1) SearchKey - requires the following:
                 action      : This is a search using a key, so "searchkey" would work ;)
                 collection  : The collection to look in
@@ -82,6 +90,9 @@ class Api(object):
                 From Client Terminal:
                     ./Client.py action=insert collection=temporary data='{"stock":"GOOG","price":1000.88,"date":"13 Jan 2018"}'
         """
+        if self.action == "test":
+            return {"results":{"Success":"Your client is communicating with the server."}}
+
         collection = self.request.get("collection",None)
         if collection == None:
             return {"results":{"Error":"Inserting into mongo needs a specified 'collection'."}}

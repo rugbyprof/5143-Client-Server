@@ -1,4 +1,4 @@
-#!/usr/local/Cellar/python@3.8/3.8.1/bin/python3
+#!/usr/bin/env python3
 """ Client.py
 Look at above shebang and make sure your python is at same location.
 You can test by typing `which python3` at your console.
@@ -46,11 +46,16 @@ if __name__ == "__main__":
     data = kwargs.get("data", None)                 # optional
     params = kwargs.get("params",None)
 
+
+
     # Create an instance of our "Request" class
     request = Request()
 
     # if not (host and port and action) or (key or value):
     #     Usage()
+
+
+    # run `Client.py host=xxx.xxx.xxx.xxx port=xxxx action=test` to see if server responds 
 
     request = request.createRequest(action=action, key=key, collection=collection, data=data, value=value, params=params)
 
