@@ -141,7 +141,8 @@ class MongoHelper(object):
     """
     def __init__(self,db,collection=None):
         self.client = MongoClient('mongodb://localhost:27017')
-        self.db = self.client[db]
+        self.db_name = db
+        self.db_conn = self.client[db]
         self.collection = collection
 
     def setCollection(self,name):
@@ -158,13 +159,14 @@ class MongoHelper(object):
 
         mongodata["last_modified"] = datetime.datetime.utcnow()
 
-        result = self.db[self.collection].insert_one(mongodata)
+        result = self.db_conn[self.collection].insert_one(mongodata)
 
         uid = str(result.inserted_id)
         if uid != None:
             response = {"success": True,"result_id":uid,"message":f"Inserted 1 item into {self.collection}"}
         else:
             response = {"success": False,"message":f"Failed to instert into {self.collection}"}
+            response = {"success": False,"database":self.db_name,"collection":self.collection,"message":f"Failed to instert into {self.collection}"}
 
         return response
 
@@ -186,11 +188,10 @@ class MongoHelper(object):
             self.collection = collection
 
         try:
-            result = self.db[self.collection].find(params)
+            result = self.db_conn[self.collection].find(params)
         except: 
-            return {"success": False,"collection":self.collection,"message":f"No results with {params} "}
-
-        
+            response = {"success": False,"database":self.db_name,"collection":self.collection,"params":params}
+            
         for row in result:
             row['_id'] = str(row['_id'])
             result_list.append(row)
@@ -198,7 +199,7 @@ class MongoHelper(object):
         if len(result_list) > 0:
             response = {"success": True,"count":len(result_list),"data":result_list,}
         else:
-            response = {"success": False,"collection":self.collection,"message":f"No results with params {params} "}
+            response = {"success": False,"database":self.db_name,"collection":self.collection,"params":params}
 
         return response 
 
